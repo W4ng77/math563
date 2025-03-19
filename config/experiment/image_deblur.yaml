@@ -1,0 +1,8 @@
+algorithm: "admm"
+problem: "l1"
+maxiter: 500
+gammal1: 0.049
+tprimaldr: 2.0
+rhoprimaldr: 0.1
+tprimaldualdr: 2.0
+rhoprimaldualdr: 1.049
