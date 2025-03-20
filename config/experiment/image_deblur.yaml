@@ -6,3 +6,6 @@ tprimaldr: 2.0
 rhoprimaldr: 0.1
 tprimaldualdr: 2.0
 rhoprimaldualdr: 1.049
+image_path: "data/cameraman.jpg"
+sigma: 5
+noise_density: 0.2
