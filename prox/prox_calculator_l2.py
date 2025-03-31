@@ -2,7 +2,7 @@ from prox.abstract_prox_calculator import AbstractProxCalculator
 from utils.constants import *
 import numpy as np
 
-class ProxCalculatorL1(AbstractProxCalculator):
+class ProxCalculatorL2(AbstractProxCalculator):
     def __init__(self, t: float, b: np.ndarray):
         """
         Initialize with step size t and blurred image b.
@@ -12,11 +12,12 @@ class ProxCalculatorL1(AbstractProxCalculator):
 
     def calculate(self, x: np.ndarray) -> np.ndarray:
         """
-        Prox operator of ||x - b||_1 applied to input x using soft-thresholding.
+        Proximal operator for ||x - b||_2^2.
+        Returns: (2t * b + x) / (2t + 1)
         """
-        z = x - self.b
-        shrink = np.sign(z) * np.maximum(np.abs(z) - self.t, 0)
-        return shrink + self.b
+        numerator = 2 * self.t * self.b + x
+        denominator = 2 * self.t + 1
+        return numerator / denominator
 
     def is_eligible(self, type: str) -> bool:
-        return type == L1_PROX
+        return type == L2_PROX
