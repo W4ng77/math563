@@ -43,6 +43,16 @@ def main(cfg: DictConfig):
     plt.axis('off')
     plt.show()
 
+    # Run deblurring algorithm
+    algo = get_algorithm(cfg.algorithm.name, cfg)
+    restored = algo.run_algorithm(b=b, kernel=kernel)
+
+    # Display restored image
+    plt.figure('Restored Image')
+    plt.imshow(restored, cmap='gray')
+    plt.axis('off')
+    plt.show()
+
 
 if __name__ == "__main__":
     main()
