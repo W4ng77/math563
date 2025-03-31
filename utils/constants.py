@@ -1,7 +1,10 @@
 # Proximal calculation constants
-BOX_PROX = "box_prox"
-ISO_PROX = "iso_prox"
 L1_PROX = "l1_prox"
+L2_PROX = "l2_prox"
+ISO_PROX = "iso_prox"
+BOX_PROX = "box_prox"
+G_PROX = "g_prox"
+
 
 # Problem constants
 L1_PROBLEM = "l1"
