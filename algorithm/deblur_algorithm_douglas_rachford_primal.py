@@ -18,11 +18,14 @@ class DeblurAlgorithmDouglasRachfordPrimal(AbstractDeblurAlgorithm):
         prox_f = provider.provide_calculator(BOX_PROX)
         prox_f.t = t
 
-        prox_g = provider.provide_calculator(G_PROX)
-        prox_g.norm_type = norm_type
-        prox_g.b = b
-        prox_g.t = t
-        prox_g.gamma = gamma
+        # Fixed: Pass the parameters directly to provide_calculator
+        prox_g = provider.provide_calculator(
+            G_PROX,
+            norm_type=norm_type,
+            b=b,
+            t=t,
+            gamma=gamma
+        )
 
         shape = b.shape
         z1 = np.zeros(shape)         # for x
