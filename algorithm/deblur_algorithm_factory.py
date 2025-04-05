@@ -8,7 +8,7 @@ from typing import Optional
 
 
 class DeblurAlgorithmFactory:
-    """ Initialize """
+    """Factory class to provide appropriate deblurring algorithm instance."""
 
     def __init__(self) -> None:
         self._algorithms = []
@@ -17,15 +17,23 @@ class DeblurAlgorithmFactory:
             for child in children:
                 self._algorithms.append(child())
 
-    """ Public methods """
-
     def get_algorithm(self, algo: str) -> Optional[AbstractDeblurAlgorithm]:
-
         if len(self._algorithms) == 0:
             return None
-
         for algorithm in self._algorithms:
             if algorithm.should_use(algo):
                 return algorithm
-
         return None
+
+
+# === Module-level function for convenience === #
+_factory = DeblurAlgorithmFactory()
+
+def get_algorithm(algo: str) -> Optional[AbstractDeblurAlgorithm]:
+    """
+    Global function to fetch the desired deblurring algorithm.
+
+    :param algo: The algorithm name string (e.g., 'admm', 'chambollepock', etc.)
+    :return: Corresponding AbstractDeblurAlgorithm instance or None
+    """
+    return _factory.get_algorithm(algo)

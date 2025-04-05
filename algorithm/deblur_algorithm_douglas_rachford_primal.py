@@ -6,11 +6,11 @@ import numpy as np
 class DeblurAlgorithmDouglasRachfordPrimal(AbstractDeblurAlgorithm):
     def run_algorithm(self, **kwargs):
         b = kwargs["b"]  # blurred image
-        t = kwargs["t"]  # step size
-        rho = kwargs["rho"]  # relaxation parameter
+        t = kwargs["tprimaldr"]  # step size
+        rho = kwargs["rhoprimaldr"]  # relaxation parameter
         max_iter = kwargs.get("max_iter", 100)
         norm_type = kwargs["norm_type"]
-        gamma = kwargs["gamma"]
+        gamma = kwargs["gammal1"]
 
         provider = ProxCalculatorProvider()
 

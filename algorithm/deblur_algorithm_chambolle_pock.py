@@ -23,7 +23,14 @@ class DeblurAlgorithmChambollePock(AbstractDeblurAlgorithm):
         # === Load Proximal Operators ===
         provider = ProxCalculatorProvider()
         prox_f = provider.provide_calculator(BOX_PROX)
-        prox_g = provider.provide_calculator(G_PROX)
+        # prox_g = provider.provide_calculator(G_PROX)
+        prox_g = provider.provide_calculator(
+            G_PROX,
+            norm_type=kwargs["norm_type"],
+            b=kwargs["b"],
+            t=kwargs["t"],
+            gamma=kwargs["gamma"]
+        )
 
         # Set params for prox_f (x step)
         prox_f.t = t

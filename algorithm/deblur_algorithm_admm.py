@@ -22,14 +22,9 @@ class DeblurAlgorithmAdmm(AbstractDeblurAlgorithm):
 
         provider = ProxCalculatorProvider()
         prox_f = provider.provide_calculator(BOX_PROX)
-        prox_g = provider.provide_calculator(G_PROX)
-
-        # Set parameters
-        prox_f.t = 1 / t
-        prox_g.t = 1 / t
-        prox_g.gamma = gamma
-        prox_g.b = b
-        prox_g.norm_type = problem
+        prox_g = provider.provide_calculator(
+            G_PROX, norm_type=problem, b=b, t=1 / t, gamma=gamma
+        )
 
         for _ in range(i["maxiter"]):
             x = invertMatrixT(u + applyAT(y) - (1 / t) * (w + applyAT(z)))
