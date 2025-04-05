@@ -4,16 +4,10 @@ import numpy as np
 
 class ProxCalculatorL1(AbstractProxCalculator):
     def __init__(self, t: float, b: np.ndarray):
-        """
-        Initialize with step size t and blurred image b.
-        """
         self.t = t
         self.b = b
 
     def calculate(self, x: np.ndarray) -> np.ndarray:
-        """
-        Prox operator of ||x - b||_1 applied to input x using soft-thresholding.
-        """
         z = x - self.b
         shrink = np.sign(z) * np.maximum(np.abs(z) - self.t, 0)
         return shrink + self.b

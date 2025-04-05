@@ -8,10 +8,6 @@ class ProxCalculatorIso(AbstractProxCalculator):
         self.gamma = gamma
 
     def calculate(self, x: np.ndarray) -> np.ndarray:
-        """
-        Proximal operator for the isotropic total variation norm.
-        Input x is assumed to have shape (H, W, 2) corresponding to (y2, y3).
-        """
         y2 = x[:, :, 0]
         y3 = x[:, :, 1]
 
@@ -24,8 +20,8 @@ class ProxCalculatorIso(AbstractProxCalculator):
             prox2 = y2 * factor
             prox3 = y3 * factor
 
-        # Stack result back to shape (H, W, 2)
         return np.stack([prox2, prox3], axis=-1)
 
     def is_eligible(self, type: str) -> bool:
         return type == ISO_PROX
+

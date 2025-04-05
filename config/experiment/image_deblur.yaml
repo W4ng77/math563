@@ -1,4 +1,4 @@
-algorithm: "admm"
+algorithm: "douglasrachfordprimal"
 problem: "l1"
 maxiter: 500
 gammal1: 0.049
@@ -6,6 +6,10 @@ tprimaldr: 2.0
 rhoprimaldr: 0.1
 tprimaldualdr: 2.0
 rhoprimaldualdr: 1.049
-image_path: "data/cameraman.jpg"
+tadmm: 1.3
+rhoadmm: 0.9
+tchambollepock: 0.5
+schambollepock: 0.5
+image_path: "cameraman.jpg"
 sigma: 5
 noise_density: 0.2
